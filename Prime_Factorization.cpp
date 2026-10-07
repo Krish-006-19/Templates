@@ -1,20 +1,17 @@
-vector<long long> primeFactors(long long n) {
-    vector<long long> factors;
+vector<ll> prime_factorize(ll x) {
+    vector<ll> pri;
 
-    while (n % 2 == 0) {
-        factors.push_back(2);
-        n /= 2;
-    }
+    for (ll i = 2; i * i <= x; ++i) {
+        if (x % i != 0) continue;
 
-    for (long long p = 3; p * p <= n; p += 2) {
-        while (n % p == 0) {
-            factors.push_back(p);
-            n /= p;
+        pri.push_back(i);
+
+        while (x % i == 0) {
+            x /= i;
         }
     }
 
-    if (n > 1)
-        factors.push_back(n);
+    if (x > 1) pri.push_back(x);
 
-    return factors;
+    return pri;
 }
